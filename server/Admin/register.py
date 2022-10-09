@@ -22,7 +22,7 @@ def register(data, db):
     if not user:
         try:
             pas = generate_password_hash(password)
-            user = Users(userid=userid, fname=firstname, lname=lastname, role='patient',
+            user = Users(userid=userid, fname=firstname, lname=lastname, role=userRole,
                          email=email, password=pas, PhoneNo=phone) #isadmin=False
             db.session.add(user)
             db.session.commit()
@@ -30,10 +30,10 @@ def register(data, db):
             #.......Send an email...............#
             #sendEmail(user.email, "User created successfully! - Test Email")
 
-            return jsonify({'message': 'user registered'}), 200
+            return jsonify({'message': 'doctor registered'}), 200
 
         except Exception as e:
             print(e)
-            return jsonify({'message': 'Failed to register'}), 403
+            return jsonify({'message': 'Failed to register a doctor'}), 403
             pass
     return jsonify({'message': 'User already exist!'}), 407
