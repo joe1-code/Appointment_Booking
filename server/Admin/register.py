@@ -12,10 +12,11 @@ userid = uuid.uuid4()  # to bdo ........... to be return to the setter and gette
 def register(data, db):
     firstname = data['fname']
     lastname = data['lname']
-    userRole=data['role']
     email = data['email']
+    userRole = data['role']
     password = data['password']
     phone = data['PhoneNo']
+    
     
     # check if user exists
     user = Users.query.filter_by(email=email).first()

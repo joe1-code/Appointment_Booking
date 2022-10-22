@@ -12,10 +12,10 @@ userid = uuid.uuid4()  # to bdo ........... to be return to the setter and gette
 def register(data, db):
     firstname = data['fname']
     lastname = data['lname']
-    userRole=data['role']
     email = data['email']
     password = data['password']
-    phone = data['PhoneNo']
+    PhoneNo = data['phoneNo']
+    
     
     # check if user exists
     user = Users.query.filter_by(email=email).first()
@@ -23,7 +23,7 @@ def register(data, db):
         try:
             pas = generate_password_hash(password)
             user = Users(userid=userid, fname=firstname, lname=lastname, role='patient',
-                         email=email, password=pas, PhoneNo=phone) #isadmin=False
+                         email=email, password=pas, PhoneNo=PhoneNo) 
             db.session.add(user)
             db.session.commit()
 

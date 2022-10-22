@@ -11,7 +11,7 @@ def login(request,Users):
      # getting posted data and check for auth
     data=json.loads(request.data)
     if data:
-       username = data['username']
+       username = data['email']
        password = data['password']
        print(username,password) 
        user = Users.query.filter_by(email=username).first()

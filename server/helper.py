@@ -33,7 +33,7 @@ def token_required_user(f):
 
             # add role and userid to flask global storage cache
             print(data)
-            #g.userRole = data['role']
+            g.userRole = data['role']
             g.userid = data['id']
             
             
