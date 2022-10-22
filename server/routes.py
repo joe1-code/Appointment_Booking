@@ -25,8 +25,11 @@ CORS(main, support_credentials=True)
 @main.route('/register', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def Userreg():
-    data = request.json
-    return register(data, db)
+    if(request.method == 'POST'):
+        return register(data, db)
+    else:
+        pass
+    
 
 
 @main.route('/login', methods=['POST', 'OPTIONS'])
