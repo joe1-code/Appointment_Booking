@@ -22,11 +22,13 @@ CORS(main, support_credentials=True)
 
 # ---------- Authentication routes ----------
 
-@main.route('/register', methods=['POST'])
+@main.route('/register', methods=['POST', 'OPTIONS'])
 @cross_origin(supports_credentials=True)
 def Userreg():
     if(request.method == 'POST'):
+        data = request.json
         return register(data, db)
+        
     else:
         pass
     
@@ -54,7 +56,7 @@ def resetPassword():
 def createUser():
     data = request.json
     if(request.method == 'POST'):
-        return 'registerUser(data, db)'
+        return registerUser(data, db)
     else:
         pass
 
@@ -68,7 +70,7 @@ def patientreg():
 
 #--------Admin_actions----------------------------------
 
-@main.route('/Admin/register', methods=['POST'])
+@main.route('/Admin/register', methods=['POST',''])
 @cross_origin(supports_credentials=True)
 @token_required_admin
 def Docreg():
