@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, g
 from .extensions import db
 from .models import Users,Appointment
 from .auth.login import login
+from .auth.reset import resetPassword
 from .doctorprofile.profile import createprofile
 from .patient.finddoctors import doctors
 from .auth.register import register
@@ -43,9 +44,13 @@ def Userlogin():
         pass
 
 
-@main.route('/resetPassword')
-def resetPassword():
-    return 'reset codes sent'
+@main.route('/reset',methods=['POST', 'OPTIONS'])
+@cross_origin(support_credentials=True)
+def resetPass():
+    if(request.method == 'POST'):
+        return resetPassword(request, Users)
+    else:
+     pass
 
 # ---------- Admin actions ---------------------------
 
